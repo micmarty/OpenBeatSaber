@@ -181,7 +181,7 @@ public class SaberGame : MonoBehaviour {
     {
 
         float x = Mathf.Lerp(-1f, 1f, e.position.x);
-        float y = Mathf.Lerp(1.5f, 2.5f, e.position.y);
+        float y = Mathf.Lerp(-0.25f, 0.75f, e.position.y) + 0.05f;
         GameObject instantiatePrefab = e.hand == RhythmPatternEvent.Hand.Right ? rightPrefab : leftPrefab;
         GameObject go = Instantiate(instantiatePrefab);
         go.transform.parent = transform;
