@@ -67,8 +67,12 @@ public class SaberGame : MonoBehaviour {
         RhythmPatternEvent pattern = new RhythmPatternEvent();
 
         // BeatSaber grid is 3 rows x 5 columns
-        float[] yPositions = new float[3] { 0f, 1.25f, 2.5f };
-        float[] xPositions = new float[5] { -1.5f, -0.75f, 0f, 0.75f, 1.5f };
+        //float[] yPositions = new float[3] { 0f, 1.25f, 2.5f };
+        //float[] xPositions = new float[5] { -1.5f, -0.75f, 0f, 0.75f, 1.5f };
+
+        float[] yPositions = new float[3] { 0f, 0.5f, 1f };
+        float[] xPositions = new float[5] { 0f, 0.25f, 0.5f, 0.75f, 1f };
+
         float x = xPositions[note._lineIndex];
         float y = yPositions[note._lineLayer];
         Debug.Log(string.Format("x: {0} y: {1}", x, y));
@@ -80,6 +84,7 @@ public class SaberGame : MonoBehaviour {
 
     private RhythmPatternEvent.Side MapCutDirectionIntoSide(Note note)
     {
+        Debug.Log(note._cutDirection);
         switch (note._cutDirection)
         {
             // RhythmSystem Side uses the opposite directions, AFAIK!
@@ -88,11 +93,11 @@ public class SaberGame : MonoBehaviour {
             case 1:
                 return RhythmPatternEvent.Side.Top;
             case 2:
-                return RhythmPatternEvent.Side.Left;
-            case 3:
                 return RhythmPatternEvent.Side.Right;
+            case 3:
+                return RhythmPatternEvent.Side.Left;
             case 8:
-                return RhythmPatternEvent.Side.Any;
+                return RhythmPatternEvent.Side.Top;
             default:
                 // Original: 4 is cut up left, 5 is cut up right, 6 is cut down left, 7 is cut down right
                 // Not Supported yet
