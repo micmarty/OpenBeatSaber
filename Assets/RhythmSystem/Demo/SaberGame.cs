@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -125,7 +125,7 @@ public class SaberGame : MonoBehaviour {
 
         float x = xPositions[note._lineIndex];
         float y = yPositions[note._lineLayer];
-        Debug.Log(string.Format("x: {0} y: {1}", x, y));
+        //Debug.Log(string.Format("x: {0} y: {1}", x, y));
         pattern.position = new Vector2(x, y);
         pattern.hand = (RhythmPatternEvent.Hand)note._type;
         pattern.side = MapCutDirectionIntoSide(note);
@@ -134,7 +134,7 @@ public class SaberGame : MonoBehaviour {
 
     private RhythmPatternEvent.Side MapCutDirectionIntoSide(Note note)
     {
-        Debug.Log(note._cutDirection);
+        //Debug.Log(note._cutDirection);
         switch (note._cutDirection)
         {
             // RhythmSystem Side uses the opposite directions, AFAIK!
