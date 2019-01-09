@@ -217,12 +217,14 @@ public class SaberGame : MonoBehaviour {
             elapsedTime += Time.unscaledDeltaTime;
             yield return new WaitForEndOfFrame();
         }
-        while (elapsedTime < offset + 1)
+        // We don't want notes to go away quickly, so we mimic the first loop
+        // by giving it the same amount time (0->offset) for execution and same forward speed
+        while (elapsedTime <= 2 * offset)
         {
             go.transform.position = Vector3.Lerp(
                 targetPos + Vector3.up * y, 
-                targetPos - Vector3.forward * 10, 
-                Mathf.InverseLerp(offset, offset + 1, elapsedTime)
+                targetPos - Vector3.forward * 30, 
+                Mathf.InverseLerp(offset, 2 * offset, elapsedTime)
             );
             elapsedTime += Time.unscaledDeltaTime;
             yield return new WaitForEndOfFrame();
