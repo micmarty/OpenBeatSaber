@@ -113,7 +113,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!43 &459136997
+--- !u!43 &107632504
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -285,11 +285,19 @@ Prefab:
     - target: {fileID: 2348914, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 799475322}
+      objectReference: {fileID: 872414940}
     - target: {fileID: 3380982, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 459136997}
+      objectReference: {fileID: 107632504}
+    - target: {fileID: 408470, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 408470, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11420968, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
@@ -335,40 +343,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912d802a760e59b44a7076eae28d9a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightPrefab: {fileID: 1988550456010020, guid: 11c86817858dbb647a16708bea6407d0,
-    type: 2}
-  leftPrefab: {fileID: 1438910779748500, guid: 2a21a7dd669f725449e2b843bc76c150, type: 2}
+  rightPrefab: {fileID: 1438910779748500, guid: 2a21a7dd669f725449e2b843bc76c150,
+    type: 3}
+  leftPrefab: {fileID: 1988550456010020, guid: 11c86817858dbb647a16708bea6407d0, type: 3}
   pattern: {fileID: 11400000, guid: 09d7afc23cdd4814c8bb9832a62f009c, type: 2}
-  curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 0.4410399
-      value: 0.39591455
-      inSlope: 1.4010072
-      outSlope: 1.4010072
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 0.614972
-      value: 0.7081064
-      inSlope: 0.9700656
-      outSlope: 0.9700656
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
+  jsonLevelPath: D:\Repos\OpenBeatSaber\Assets\OpenBeatSaber\Levels\Believer\Expert.json
 --- !u!82 &535678871
 AudioSource:
   m_ObjectHideFlags: 0
@@ -449,7 +428,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!21 &799475322
+--- !u!21 &872414940
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -687,7 +666,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1678999750}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.41865468, y: -0.49999988, z: 15.5}
+  m_LocalPosition: {x: 0, y: -0.5, z: 15.5}
   m_LocalScale: {x: 0.5, y: 1, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
@@ -718,7 +697,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: acf9e2208814cc345b6c8cd1b0e78cf4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f280e9ec489eacc4c968bfc96b7ba0d3, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -850,6 +829,16 @@ Prefab:
         type: 2}
       propertyPath: m_AdvancedNotificationOffset
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114741951473038688, guid: 67a464533bbd45e48a8866f660fdb2c3,
+        type: 2}
+      propertyPath: m_PrerollTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114741951473038688, guid: 67a464533bbd45e48a8866f660fdb2c3,
+        type: 2}
+      propertyPath: m_InitialTempo
+      value: 125
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67a464533bbd45e48a8866f660fdb2c3, type: 2}

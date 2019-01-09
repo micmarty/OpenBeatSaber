@@ -5,9 +5,9 @@ using System;
 
 [Serializable]
 public class Note {
-    float _time;
-    int _lineIndex;
-    int _lineLayer;
-    int _type;
-    int _cutDirection;
+    public float _time;
+    public int _lineIndex;
+    public int _lineLayer;
+    public int _type;
+    public int _cutDirection;
 }
