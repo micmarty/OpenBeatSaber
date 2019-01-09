@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using System.IO;
 
 [RequireComponent(typeof(AudioSource))]
@@ -25,10 +26,61 @@ public class SaberGame : MonoBehaviour {
 
     private void Awake()
     {
-        string jsonString = File.ReadAllText(jsonLevelPath);
-        level = JsonUtility.FromJson<Level>(jsonString);
-        PreloadLevelNotes();
+        // Choose path to info.json
+        string path = EditorUtility.OpenFilePanel("Select main level file info.json (BeatSaber)", "", "json");
+        if (path.Length != 0)
+        {
+            try
+            {
+                // Parse info.json
+                string infoFileJsonString = File.ReadAllText(path);
+                Info levelInfo = JsonUtility.FromJson<Info>(infoFileJsonString);
+
+                // Read specific level (difficulty)
+                // Hardcoded - always read first-defined in array, e.g Easy.json
+                int difficultyLevelId = 0;
+
+                string infoDirectory = Path.GetDirectoryName(path);
+                string jsonLevelFileName = levelInfo.difficultyLevels[difficultyLevelId].jsonPath;
+                jsonLevelPath = Path.Combine(infoDirectory, jsonLevelFileName);
+                string jsonLevelAsText = File.ReadAllText(jsonLevelPath);
+                level = JsonUtility.FromJson<Level>(jsonLevelAsText);
+
+                // Adjust RhythmTracker's bpm
+                RhythmTracker.instance.SetTempo(level._beatsPerMinute);
+
+                // Load song (based on given path)
+                string jsonLevelAudioName = levelInfo.difficultyLevels[difficultyLevelId].audioPath;
+                string audioPath = Path.Combine(infoDirectory, jsonLevelAudioName);
+                StartCoroutine(LoadSongCoroutine(audioPath));
+
+                // Load and order all the notes
+                PreloadLevelNotes();
+
+                // Notice!
+                // Assuming that song is always 16 beats per bar...
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+            }
+        }
+        else
+        {
+            Debug.LogError("Incorrect path!");
+        }
     }
+
+    IEnumerator LoadSongCoroutine(string path)
+    {
+        string url = string.Format("file://{0}", path);
+        WWW www = new WWW(url);
+        yield return www;
+
+        // Replace audio clip with song which is located at the url
+        RhythmTracker.instance.GetPlaybackAudioSource().clip = www.GetAudioClip(false, false);
+    }
+
     private void PreloadLevelNotes()
     {
         // Instead of looping through all of the level notes (like in default RhythmSystem demo
@@ -67,9 +119,7 @@ public class SaberGame : MonoBehaviour {
         RhythmPatternEvent pattern = new RhythmPatternEvent();
 
         // BeatSaber grid is 3 rows x 5 columns
-        //float[] yPositions = new float[3] { 0f, 1.25f, 2.5f };
-        //float[] xPositions = new float[5] { -1.5f, -0.75f, 0f, 0.75f, 1.5f };
-
+        // Values are between 0 and 1 -> they will be interpolated by Math.Lerp()
         float[] yPositions = new float[3] { 0f, 0.5f, 1f };
         float[] xPositions = new float[5] { 0f, 0.25f, 0.5f, 0.75f, 1f };
 
