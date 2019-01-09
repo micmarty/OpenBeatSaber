@@ -88,9 +88,9 @@ public class SaberGame : MonoBehaviour {
             case 1:
                 return RhythmPatternEvent.Side.Top;
             case 2:
-                return RhythmPatternEvent.Side.Right;
-            case 3:
                 return RhythmPatternEvent.Side.Left;
+            case 3:
+                return RhythmPatternEvent.Side.Right;
             case 8:
                 return RhythmPatternEvent.Side.Any;
             default:
