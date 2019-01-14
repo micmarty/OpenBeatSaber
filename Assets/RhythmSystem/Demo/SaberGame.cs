@@ -13,6 +13,7 @@ public class SaberGame : MonoBehaviour {
     //public AnimationCurve curve;
     private int count = -1;
     private RhythmTracker.TriggerTiming triggerTiming;
+    private AudioSource noteHit;
 
     /* 
      Patch which allows loading custom songs from beatsaver.com
@@ -26,6 +27,7 @@ public class SaberGame : MonoBehaviour {
 
     private void Awake()
     {
+        noteHit = (AudioSource)GameObject.Find("NoteHitAudioSource").GetComponent<AudioSource>();
         // Choose path to info.json
         string path = EditorUtility.OpenFilePanel("Select main level file info.json (BeatSaber)", "", "json");
         if (path.Length != 0)
@@ -219,6 +221,8 @@ public class SaberGame : MonoBehaviour {
         }
         // We don't want notes to go away quickly, so we mimic the first loop
         // by giving it the same amount time (0->offset) for execution and same forward speed
+
+        noteHit.PlayOneShot(noteHit.clip, 1.5F);
         while (elapsedTime <= 2 * offset)
         {
             go.transform.position = Vector3.Lerp(
